@@ -1,0 +1,55 @@
+ext.versions = [
+        minSdk               : 26,
+        compileSdk           : 30,
+        versionCode          : 1,
+        versionName          : '1.0',
+
+        // Gradle Plugins
+        gradleBuildTool      : '7.1.0-alpha02',
+        spotlessGradle       : '5.12.3',
+        versionPlugin        : '0.28.0',
+        ktlint               : '0.40.0',
+
+        // Kotlin
+        kotlin               : '1.4.32',
+
+        // Android Support Library
+        materialVersion      : '1.4.0-rc01',
+        constraintVersion    : '2.0.4',
+
+        // Android Architecture Components
+        lifecycleVersion     : '2.2.0',
+        lifecycleRuntime     : '2.4.0-alpha01',
+        fragmentVersion      : '1.3.5',
+        roomVersion          : '2.4.0-alpha03',
+        archCompomentVersion : '2.1.0',
+
+        // Hilt
+        hiltCoreVersion      : '2.37',
+        hiltVersion          : '1.0.0',
+
+        // Networking
+        retrofitVersion      : '2.9.0',
+        okhttpVersion        : '4.9.0',
+
+        // Mosh
+        moshiVersion         : '1.11.0',
+        moshiConverterVersion: '2.7.2',
+
+        // Coroutines
+        coroutinesVersion    : '1.5.0',
+
+        // Glide
+        glideVersion         : '4.12.0',
+        glidePaletteVersion  : '2.1.2',
+
+        // Recycler View
+        recyclerView         : '1.2.1',
+
+        // Secrets Gradle
+        secretsGradle        : '1.3.0',
+
+        // Logging
+        timberVersion        : '4.7.1',
+
+]
