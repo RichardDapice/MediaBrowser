@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">Media Browser</string>
+
     <string name="media_row_title">%s · %s · %d/10</string>
+
+    <string name="row_trending_movies">Trending Movies</string>
+    <string name="row_trending_shows">Trending Shows</string>
+    <string name="row_trending_today">Trending Today</string>
 
 </resources>

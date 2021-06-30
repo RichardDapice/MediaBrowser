@@ -10,13 +10,16 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.richarddapice.mediabrowser.R
 import com.richarddapice.mediabrowser.databinding.FragmentBrowseBinding
 import com.richarddapice.mediabrowser.model.MediaList
 import com.richarddapice.mediabrowser.model.MediaRow
 import com.richarddapice.mediabrowser.ui.adapter.MediaRowAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 @AndroidEntryPoint
 class MediaBrowseFragment : Fragment() {
@@ -27,6 +30,17 @@ class MediaBrowseFragment : Fragment() {
     private val viewModel: MediaBrowseViewModel by viewModels()
     private lateinit var mediaRowAdapter: MediaRowAdapter
 
+    private val mediaRows = mutableListOf<MediaRow>()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.run {
+            subscribeTo(getString(R.string.row_trending_movies), trendingMoviesState)
+            subscribeTo(getString(R.string.row_trending_shows), trendingShowsState)
+            subscribeTo(getString(R.string.row_trending_today), trendingTodayState)
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -35,59 +49,31 @@ class MediaBrowseFragment : Fragment() {
         _binding = FragmentBrowseBinding.inflate(inflater, container, false)
         mediaRowAdapter = MediaRowAdapter()
 
+        bindRecyclerView()
+
+        return binding.root
+    }
+
+    private fun subscribeTo(rowTitle: String, stateFlow: StateFlow<UiState>) {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                stateFlow.collect {
+                    when (it) {
+                        is UiState.Success -> updateUI(rowTitle, it.mediaList)
+                        is UiState.Error -> Timber.e(it.exception)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun bindRecyclerView() {
         binding.mainRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = mediaRowAdapter
         }
-        return binding.root
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        watchForData()
-    }
-
-    private fun watchForData() {
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.trendingMoviesState.collect {
-                    when (it) {
-                        is UiState.Success -> updateUI("Trending Movies", it.mediaList)
-                        is UiState.Error -> {
-                        } // TODO Show Error
-                    }
-                }
-            }
-        }
-
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.trendingShowsState.collect {
-                    when (it) {
-                        is UiState.Success -> updateUI("Trending Shows", it.mediaList)
-                        is UiState.Error -> {
-                        } // TODO Show Error
-                    }
-                }
-            }
-        }
-
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.trendingTodayState.collect {
-                    when (it) {
-                        is UiState.Success -> updateUI("Popular Today", it.mediaList)
-                        is UiState.Error -> {
-                        } // TODO Show Error
-                    }
-                }
-            }
-        }
-    }
-
-    private val mediaRows = mutableListOf<MediaRow>()
-
-    // TODO Just adding a bunch of rows and stuff for now.
     private fun updateUI(title: String, mediaList: MediaList?) {
         mediaList?.results?.run {
             when {
@@ -103,14 +89,18 @@ class MediaBrowseFragment : Fragment() {
                     }
                 }
             }
-            val mediaRows = mediaRows + mediaRows
             mediaRowAdapter.setList(mediaRows)
         }
     }
 
     override fun onDestroyView() {
-        super.onDestroyView()
         _binding = null
+        super.onDestroyView()
+    }
+
+    override fun onStop() {
+        mediaRows.clear()
+        super.onStop()
     }
 
     companion object {

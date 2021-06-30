@@ -13,9 +13,9 @@ import javax.inject.Inject
 @HiltViewModel
 class MediaBrowseViewModel @Inject constructor(private val service: MediaRepository) : ViewModel() {
 
-    private val _trendingMoviesState = MutableStateFlow(UiState.Success())
-    private val _trendingShowsState = MutableStateFlow(UiState.Success())
-    private val _trendingTodayState = MutableStateFlow(UiState.Success())
+    private val _trendingMoviesState = MutableStateFlow<UiState>(UiState.Success())
+    private val _trendingShowsState = MutableStateFlow<UiState>(UiState.Success())
+    private val _trendingTodayState = MutableStateFlow<UiState>(UiState.Success())
     val trendingMoviesState: StateFlow<UiState> = _trendingMoviesState
     val trendingShowsState: StateFlow<UiState> = _trendingShowsState
     val trendingTodayState: StateFlow<UiState> = _trendingTodayState
@@ -24,7 +24,7 @@ class MediaBrowseViewModel @Inject constructor(private val service: MediaReposit
         viewModelScope.launch {
             service.getTrendingMovies()
                 .catch { exception ->
-                    Timber.e(exception)
+                    _trendingMoviesState.value = UiState.Error(exception)
                 }
                 .collect { mediaList ->
                     _trendingMoviesState.value = UiState.Success(mediaList)
@@ -34,7 +34,7 @@ class MediaBrowseViewModel @Inject constructor(private val service: MediaReposit
         viewModelScope.launch {
             service.getTrendingShows()
                 .catch { exception ->
-                    Timber.e(exception)
+                    _trendingShowsState.value = UiState.Error(exception)
                 }
                 .collect { mediaList ->
                     _trendingShowsState.value = UiState.Success(mediaList)
@@ -44,7 +44,7 @@ class MediaBrowseViewModel @Inject constructor(private val service: MediaReposit
         viewModelScope.launch {
             service.getTrendingToday()
                 .catch { exception ->
-                    Timber.e(exception)
+                    _trendingTodayState.value = UiState.Error(exception)
                 }
                 .collect { mediaList ->
                     _trendingTodayState.value = UiState.Success(mediaList)
