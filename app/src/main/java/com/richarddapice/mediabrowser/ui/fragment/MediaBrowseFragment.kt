@@ -54,13 +54,13 @@ class MediaBrowseFragment : Fragment() {
         return binding.root
     }
 
-    private fun subscribeTo(rowTitle: String, stateFlow: StateFlow<UiState>) {
+    private fun subscribeTo(rowTitle: String, stateFlow: StateFlow<ApiState>) {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 stateFlow.collect {
                     when (it) {
-                        is UiState.Success -> updateUI(rowTitle, it.mediaList)
-                        is UiState.Error -> Timber.e(it.exception)
+                        is ApiState.Success -> updateUI(rowTitle, it.mediaList)
+                        is ApiState.Error -> Timber.e(it.exception)
                     }
                 }
             }
@@ -76,18 +76,10 @@ class MediaBrowseFragment : Fragment() {
 
     private fun updateUI(title: String, mediaList: MediaList?) {
         mediaList?.results?.run {
-            when {
-                mediaRows.isEmpty() -> {
-                    mediaRows.apply {
-                        add(MediaRow(title, this@run))
-                    }
-                }
-                else -> {
-                    mediaRows.apply {
-                        dropWhile { it.title == title }
-                        add(MediaRow(title, this@run))
-                    }
-                }
+            mediaRows.apply {
+                dropWhile { it.title == title }
+                add(MediaRow(title, this@run))
+
             }
             mediaRowAdapter.setList(mediaRows)
         }
