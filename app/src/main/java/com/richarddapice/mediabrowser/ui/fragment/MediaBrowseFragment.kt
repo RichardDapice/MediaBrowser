@@ -10,6 +10,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
 import com.richarddapice.mediabrowser.R
 import com.richarddapice.mediabrowser.databinding.FragmentBrowseBinding
 import com.richarddapice.mediabrowser.model.MediaList
@@ -70,7 +71,9 @@ class MediaBrowseFragment : Fragment() {
     private fun bindRecyclerView() {
         binding.mainRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = mediaRowAdapter
+            adapter = mediaRowAdapter.apply {
+                stateRestorationPolicy = PREVENT_WHEN_EMPTY
+            }
         }
     }
 

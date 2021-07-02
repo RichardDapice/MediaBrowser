@@ -8,5 +8,7 @@ class Constants {
         const val API_KEY = "api_key"
 
         const val API_REFRESH_MILLIS = 120000L
+
+        const val EMPTY_STRING = ""
     }
 }
