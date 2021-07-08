@@ -27,7 +27,7 @@ Media Browser is a WIP application based on modern Android development and MVVM 
 - [Moshi](https://github.com/square/moshi/)
 - [Glide](https://github.com/bumptech/glide)
 - [Timber](https://github.com/JakeWharton/timber)
-- [Spotless Grade](https://github.com/diffplug/spotless)
+- [Spotless Gradle](https://github.com/diffplug/spotless)
 
 
 ## MAD Score
