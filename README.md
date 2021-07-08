@@ -39,3 +39,8 @@ Media Browser is a WIP application based on modern Android development and MVVM 
 <p align="center">
 <img src="/screenshots/kotlin.png" />
 </p>
+
+// Todos
+- Testing with Turbine
+- Consolidate list of media within ViewModel
+- Details Fragment
