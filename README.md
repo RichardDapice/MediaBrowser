@@ -44,3 +44,4 @@ Media Browser is a WIP application based on modern Android development and MVVM 
 - Testing with Turbine
 - Consolidate list of media within ViewModel
 - Details Fragment
+- Save state of nested RecyclerView 
