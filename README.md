@@ -6,7 +6,7 @@
 </p>
 
 <p align="center">  
-Media Broser is a WIP application based on modern Android development and MVVM architecture utlizing Hilt for dependency inject along with flow and stateFlow for service and state management.
+Media Browser is a WIP application based on modern Android development and MVVM architecture utlizing Hilt for dependency inject along with flow and stateFlow for service and state management.
 </p>
 </br>
 
