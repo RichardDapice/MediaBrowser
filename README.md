@@ -11,7 +11,7 @@ Media Broser is a WIP application based on modern Android development and MVVM a
 </br>
 
 <p align="center">
-<img src="/screenshots/screenshot.png" align="right"  width="32%"/>
+<img src="/screenshots/screenshot.png" align="right"  width="22%"/>
 </p>
 
 ## Details
@@ -26,12 +26,15 @@ Media Broser is a WIP application based on modern Android development and MVVM a
 - [Retrofit2 & OkHttp3](https://github.com/square/retrofit)
 - [Moshi](https://github.com/square/moshi/)
 - [Glide](https://github.com/bumptech/glide)
-- [Timber](https://github.com/JakeWharton/timber
+- [Timber](https://github.com/JakeWharton/timber)
+
 
 ## MAD Score
 <p align="center">
 <img src="/screenshots/madScore.png" />
 </p>
+
+## Kotlin Score
 <p align="center">
-<img src="/screenshots/kotlin.png />
+<img src="/screenshots/kotlin.png" />
 </p>
