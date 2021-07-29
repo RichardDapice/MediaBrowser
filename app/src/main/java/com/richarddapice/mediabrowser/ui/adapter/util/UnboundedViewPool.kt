@@ -4,6 +4,10 @@ import android.util.SparseArray
 import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 
+/**
+ * Copied for the sake of time and used with admiration from Airbnb's Epoxy
+ * https://github.com/airbnb/epoxy
+ */
 class UnboundedViewPool : RecyclerView.RecycledViewPool() {
 
     private val scrapHeaps = SparseArray<Queue<RecyclerView.ViewHolder>>()

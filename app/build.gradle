@@ -54,10 +54,14 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$versions.lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.4.0-alpha02"
-    implementation "androidx.room:room-runtime:$versions.roomVersion"
+//    implementation "androidx.room:room-runtime:$versions.roomVersion"
 //    implementation "androidx.room:room-ktx:$versions.roomVersion"
     kapt "androidx.room:room-compiler:$versions.roomVersion"
     testImplementation "androidx.arch.core:core-testing:$versions.archCompomentVersion"
+    implementation "androidx.compose.ui:ui:$versions.jetpackComposeVersion"
+    implementation "androidx.compose.ui:ui-tooling:$versions.jetpackComposeVersion"
+    implementation "androidx.compose.foundation:foundation:$versions.jetpackComposeVersion"
+    implementation "androidx.compose.material:material:$versions.jetpackComposeVersion"
 
 
     // Hilt
