@@ -8,13 +8,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
+    compileSdk 33
     buildToolsVersion '30.0.3'
 
     defaultConfig {
         applicationId "com.richarddapice.mediabrowser"
         minSdkVersion 26
-        targetSdkVersion 30
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -50,18 +50,20 @@ dependencies {
 
     // Android Architecture Components
     implementation "androidx.fragment:fragment-ktx:$versions.fragmentVersion"
-    implementation "androidx.lifecycle:lifecycle-extensions:$versions.lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-extensions:$versions.lifecycleExtensions"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$versions.lifecycleVersion"
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.4.0-alpha02"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$versions.lifecycleRuntime"
+
 //    implementation "androidx.room:room-runtime:$versions.roomVersion"
 //    implementation "androidx.room:room-ktx:$versions.roomVersion"
-    kapt "androidx.room:room-compiler:$versions.roomVersion"
-    testImplementation "androidx.arch.core:core-testing:$versions.archCompomentVersion"
-    implementation "androidx.compose.ui:ui:$versions.jetpackComposeVersion"
-    implementation "androidx.compose.ui:ui-tooling:$versions.jetpackComposeVersion"
-    implementation "androidx.compose.foundation:foundation:$versions.jetpackComposeVersion"
-    implementation "androidx.compose.material:material:$versions.jetpackComposeVersion"
+//    kapt "androidx.room:room-compiler:2.4.3"
+
+//    testImplementation "androidx.arch.core:core-testing:2.1.0"
+//    implementation "androidx.compose.ui:ui:1.2.1"
+//    implementation "androidx.compose.ui:ui-tooling:1.2.1"
+//    implementation "androidx.compose.foundation:foundation:1.2.1"
+//    implementation "androidx.compose.material:material:1.2.1"
 
 
     // Hilt

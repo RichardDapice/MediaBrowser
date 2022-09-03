@@ -5,16 +5,18 @@ import androidx.lifecycle.viewModelScope
 import com.richarddapice.mediabrowser.model.MediaList
 import com.richarddapice.mediabrowser.repository.MediaRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class MediaBrowseViewModel @Inject constructor(private val service: MediaRepository) : ViewModel() {
 
-    private val _trendingMoviesState = MutableStateFlow<ApiState>(ApiState.Success())
-    private val _trendingShowsState = MutableStateFlow<ApiState>(ApiState.Success())
-    private val _trendingTodayState = MutableStateFlow<ApiState>(ApiState.Success())
+    private val _trendingMoviesState = MutableStateFlow<ApiState>(ApiState.InProgress)
+    private val _trendingShowsState = MutableStateFlow<ApiState>(ApiState.InProgress)
+    private val _trendingTodayState = MutableStateFlow<ApiState>(ApiState.InProgress)
     val trendingMoviesState: StateFlow<ApiState> = _trendingMoviesState
     val trendingShowsState: StateFlow<ApiState> = _trendingShowsState
     val trendingTodayState: StateFlow<ApiState> = _trendingTodayState
@@ -55,4 +57,5 @@ class MediaBrowseViewModel @Inject constructor(private val service: MediaReposit
 sealed class ApiState {
     class Success(val mediaList: MediaList? = null) : ApiState()
     class Error(val exception: Throwable) : ApiState()
+    object InProgress : ApiState()
 }

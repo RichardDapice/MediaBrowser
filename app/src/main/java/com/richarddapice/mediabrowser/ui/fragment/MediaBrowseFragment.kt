@@ -62,6 +62,7 @@ class MediaBrowseFragment : Fragment() {
                     when (it) {
                         is ApiState.Success -> updateUI(rowTitle, it.mediaList)
                         is ApiState.Error -> Timber.e(it.exception)
+                        ApiState.InProgress -> { /* Show Progress */ }
                     }
                 }
             }
@@ -82,7 +83,6 @@ class MediaBrowseFragment : Fragment() {
             mediaRows.apply {
                 dropWhile { it.title == title }
                 add(MediaRow(title, this@run))
-
             }
             mediaRowAdapter.setList(mediaRows)
         }

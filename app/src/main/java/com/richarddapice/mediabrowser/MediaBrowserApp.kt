@@ -5,9 +5,8 @@ import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 import timber.log.Timber.DebugTree
 
-
 @HiltAndroidApp
-class MediaBrowserApp: Application() {
+class MediaBrowserApp : Application() {
     override fun onCreate() {
         super.onCreate()
         Timber.plant(DebugTree())

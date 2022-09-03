@@ -1,6 +1,5 @@
 package com.richarddapice.mediabrowser.model
 
-
 import android.os.Parcelable
 import com.richarddapice.mediabrowser.util.Constants
 import com.squareup.moshi.Json

@@ -5,7 +5,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.richarddapice.mediabrowser.R
 
-class ItemDecorator: RecyclerView.ItemDecoration() {
+class ItemDecorator : RecyclerView.ItemDecoration() {
 
     override fun getItemOffsets(
         outRect: Rect,

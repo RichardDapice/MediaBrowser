@@ -1,8 +1,8 @@
 package com.richarddapice.mediabrowser.ui.adapter.util
 
 import androidx.recyclerview.widget.DiffUtil
-import com.richarddapice.mediabrowser.model.Result
 import com.richarddapice.mediabrowser.model.MediaRow
+import com.richarddapice.mediabrowser.model.Result
 
 class RowDiffCallback(
     private val oldRows: MutableList<MediaRow>,

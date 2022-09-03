@@ -18,5 +18,4 @@ class MediaItemAdapter(private val results: List<Result>) : RecyclerView.Adapter
     }
 
     override fun getItemCount() = results.size
-
 }

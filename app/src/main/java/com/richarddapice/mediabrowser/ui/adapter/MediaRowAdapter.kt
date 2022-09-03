@@ -52,5 +52,3 @@ class MediaRowAdapter : RecyclerView.Adapter<RowViewHolder>() {
 
     override fun getItemCount() = rows.size
 }
-
-

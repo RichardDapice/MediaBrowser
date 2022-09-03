@@ -2,7 +2,8 @@ package com.richarddapice.mediabrowser.ui.adapter.util
 
 import android.util.SparseArray
 import androidx.recyclerview.widget.RecyclerView
-import java.util.*
+import java.util.LinkedList
+import java.util.Queue
 
 /**
  * Copied for the sake of time and used with admiration from Airbnb's Epoxy

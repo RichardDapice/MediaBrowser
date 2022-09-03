@@ -1,7 +1,7 @@
 package com.richarddapice.mediabrowser.ui.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import com.richarddapice.mediabrowser.R
 import com.richarddapice.mediabrowser.databinding.ActivityMainBinding

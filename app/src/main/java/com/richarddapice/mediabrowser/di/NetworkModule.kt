@@ -10,9 +10,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
-import okhttp3.logging.HttpLoggingInterceptor.Level.*
+import okhttp3.logging.HttpLoggingInterceptor.Level
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
@@ -40,7 +39,7 @@ object NetworkModule {
 
     private val loggingInterceptor
         get() = HttpLoggingInterceptor().apply {
-            level = if (BuildConfig.DEBUG) BODY else NONE
+            level = if (BuildConfig.DEBUG) Level.BODY else Level.NONE
         }
 
     private val apiInterceptor = Interceptor { chain ->
